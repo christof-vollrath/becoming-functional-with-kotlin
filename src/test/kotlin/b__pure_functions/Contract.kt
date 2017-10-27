@@ -3,6 +3,7 @@ package b__pure_functions
 import a__first_class_functions.Customer
 import a__first_class_functions.allCustomers
 import a__first_class_functions.getCustomerById
+import a__first_class_functions.upsertCustomer
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.jetbrains.spek.api.Spek
@@ -13,8 +14,8 @@ import java.util.*
 
 data class Contract(
         val beginDate: Date,
-        var endDate: Date = defaultEndDate(beginDate),
-        var enabled: Boolean = true)
+        val endDate: Date = defaultEndDate(beginDate),
+        val enabled: Boolean = true)
 
 fun defaultEndDate(beginDate: Date): Date {
     val cal = Calendar.getInstance()
@@ -23,14 +24,11 @@ fun defaultEndDate(beginDate: Date): Date {
     return cal.time
 }
 
-fun setContractForCustomer(customers: List<Customer>, customerId: Int, enable: Boolean): Contract? {
-    val contract = getCustomerById(customers, customerId)?.contract
-    return if (contract != null) {
-        contract.enabled = enable
-        contract
-    } else {
-        null
-    }
+fun upsertContractForCustomer(customers: List<Customer>, customerId: Int, enable: Boolean): List<Customer> {
+    val customer = getCustomerById(customers, customerId)
+    if (customer != null && customer.contract != null) {
+        return upsertCustomer(customers, customer.copy(contract = customer.contract.copy(enabled = enable)))
+    } else return customers
 }
 
 fun date(year: Int, month: Int, day: Int): Date {
@@ -53,27 +51,26 @@ class ContractSpec: Spek({
     describe("some contract with customer BVG") {
         val contract = Contract(date(2017, 27, 10))
         contract.enabled `should be` true // Enabled by default
-        getCustomerById(allCustomers, 1)!!.contract = contract
+        val bvg = getCustomerById(allCustomers, 1)
+        val allCustomers1 = upsertCustomer(allCustomers, bvg!!.copy(contract = contract))
 
         on("disable contract for customer") {
-            val result = setContractForCustomer(allCustomers,1, false)
+            val allCustomers2 = upsertContractForCustomer(allCustomers1,1, false)
 
             it("contract should be disabled") {
-                contract.enabled `should be` false
-                result `should be` contract
+                getCustomerById(allCustomers2, 1)!!.contract!!.enabled `should be` false
             }
         }
         on("disable contract for non-existing customer") {
-            val result = setContractForCustomer(allCustomers, -1, false)
+            val allCustomers2 = upsertContractForCustomer(allCustomers1,-1, false)
             it("should be ignored") {
-                result `should be` null
+                allCustomers2 `should equal` allCustomers1
             }
         }
         on("disable contract for customer without contract") {
-            val result = setContractForCustomer(allCustomers, 2, false)
+            val allCustomers2 = upsertContractForCustomer(allCustomers1,2, false)
             it("should be ignored") {
-                result `should be` null
-                getCustomerById(allCustomers, 2)!!.contract `should be` null
+                allCustomers2 `should equal` allCustomers1
             }
         }
 

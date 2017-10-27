@@ -7,16 +7,17 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import java.util.*
 
 data class Customer(
         val id: Int,
-        var name: String,
-        var address: String,
-        var state: String,
-        var primaryContact: String,
-        var domain: String,
-        var enabled: Boolean = true,
-        var contract: Contract? = null)
+        val name: String,
+        val address: String,
+        val state: String,
+        val primaryContact: String,
+        val domain: String,
+        val enabled: Boolean = true,
+        val contract: Contract? = null)
 
 typealias FieldSelection<T> = (Customer) -> T
 typealias CustomerFilter = (Customer) -> Boolean
@@ -31,6 +32,20 @@ fun <T> getFilteredCustomerFields(customers: List<Customer>, customerFilter: Cus
 
 fun getCustomerById(customers: List<Customer>, id: Int): Customer? = customers.firstOrNull {it.id == id}
 
+fun upsertCustomer(customers: List<Customer>, changedCustomer: Customer): List<Customer> {
+    val result = ArrayList<Customer>(customers.size + 1)
+    var found = false
+    for(customer in customers) {
+        result +=
+            if (customer.id == changedCustomer.id) {
+                found = true
+                changedCustomer
+            }
+            else customer
+    }
+    if (! found) result += changedCustomer
+    return result
+}
 
 val allCustomers = listOf(
         Customer(1, "BVG", "Berlin", "Germany", "Hans", "bvg.de"),
@@ -61,7 +76,24 @@ class CustomersSpec: Spek({
                 result `should be` null
             }
         }
+        on("upsertCustomer with existing id") {
+            val changedCustomer = Customer(3, "Deutsche Bahn", "Franfurt", "Germany", "Dorn", "db.de", false)
+            val changedCustomers = upsertCustomer(allCustomers, changedCustomer)
+            it("should return customers with changed customer") {
+                changedCustomers.size `should equal` 3
+                getCustomerById(changedCustomers, 3)?.enabled `should be` false
+            }
+        }
+        on("upsertCustomer with new id") {
+            val changedCustomer = Customer(4, "Deutsche Bank", "Franfurt", "Germany", "Hass", "deutsche-bank.de", false)
+            val changedCustomers = upsertCustomer(allCustomers, changedCustomer)
+            it("should return customers with changed customer") {
+                changedCustomers.size `should equal` 4
+                getCustomerById(changedCustomers, 4) `should equal` changedCustomer
+            }
+        }
 
     }
 })
+
 
