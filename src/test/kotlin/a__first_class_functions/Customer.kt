@@ -27,7 +27,7 @@ fun <T> getEnabledCustomerFields(customers: List<Customer>, fieldSelection: Fiel
 
 fun <T> getFilteredCustomerFields(customers: List<Customer>, customerFilter: CustomerFilter, fieldSelection: FieldSelection<T>): List<T> =
         customers
-            .filter { customerFilter(it) }
+            .filter(customerFilter)
             .map(fieldSelection)
 
 fun getCustomerById(customers: List<Customer>, id: Int): Customer? = customers.firstOrNull {it.id == id}
