@@ -1,6 +1,7 @@
 package a__first_class_functions
 
 import b__pure_functions.Contract
+import c__immutable_variables.Contact
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.jetbrains.spek.api.Spek
@@ -9,15 +10,21 @@ import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import java.util.*
 
+interface Identifyable {
+    val id: Int
+}
+
 data class Customer(
-        val id: Int,
+        override val id: Int,
         val name: String,
         val address: String,
         val state: String,
         val primaryContact: String,
         val domain: String,
         val enabled: Boolean = true,
-        val contract: Contract? = null)
+        val contract: Contract? = null,
+        val contacts: List<Contact> = emptyList()
+) : Identifyable
 
 typealias FieldSelection<T> = (Customer) -> T
 typealias CustomerFilter = (Customer) -> Boolean
@@ -32,20 +39,22 @@ fun <T> getFilteredCustomerFields(customers: List<Customer>, customerFilter: Cus
 
 fun getCustomerById(customers: List<Customer>, id: Int): Customer? = customers.firstOrNull {it.id == id}
 
-fun upsertCustomer(customers: List<Customer>, changedCustomer: Customer): List<Customer> {
-    val result = ArrayList<Customer>(customers.size + 1)
+fun <T: Identifyable> upsert(list: List<out T>, change: T): List<T> {
+    val result = ArrayList<T>(list.size + 1)
     var found = false
-    for(customer in customers) {
+    for(element in list) {
         result +=
-            if (customer.id == changedCustomer.id) {
-                found = true
-                changedCustomer
-            }
-            else customer
+                if (element.id == change.id) {
+                    found = true
+                    change
+                }
+                else element
     }
-    if (! found) result += changedCustomer
+    if (! found) result += change
     return result
 }
+
+fun upsertCustomer(customers: List<Customer>, changedCustomer: Customer): List<Customer> = upsert(customers, changedCustomer)
 
 val allCustomers = listOf(
         Customer(1, "BVG", "Berlin", "Germany", "Hans", "bvg.de"),

@@ -24,7 +24,7 @@ fun defaultEndDate(beginDate: Date): Date {
     return cal.time
 }
 
-fun upsertContractForCustomer(customers: List<Customer>, customerId: Int, enable: Boolean): List<Customer> {
+fun setContractForCustomer(customers: List<Customer>, customerId: Int, enable: Boolean): List<Customer> {
     val customer = getCustomerById(customers, customerId)
     if (customer != null && customer.contract != null) {
         return upsertCustomer(customers, customer.copy(contract = customer.contract.copy(enabled = enable)))
@@ -55,20 +55,20 @@ class ContractSpec: Spek({
         val allCustomers1 = upsertCustomer(allCustomers, bvg!!.copy(contract = contract))
 
         on("disable contract for customer") {
-            val allCustomers2 = upsertContractForCustomer(allCustomers1,1, false)
+            val allCustomers2 = setContractForCustomer(allCustomers1,1, false)
 
             it("contract should be disabled") {
                 getCustomerById(allCustomers2, 1)!!.contract!!.enabled `should be` false
             }
         }
         on("disable contract for non-existing customer") {
-            val allCustomers2 = upsertContractForCustomer(allCustomers1,-1, false)
+            val allCustomers2 = setContractForCustomer(allCustomers1,-1, false)
             it("should be ignored") {
                 allCustomers2 `should equal` allCustomers1
             }
         }
         on("disable contract for customer without contract") {
-            val allCustomers2 = upsertContractForCustomer(allCustomers1,2, false)
+            val allCustomers2 = setContractForCustomer(allCustomers1,2, false)
             it("should be ignored") {
                 allCustomers2 `should equal` allCustomers1
             }
