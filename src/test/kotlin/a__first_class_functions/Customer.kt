@@ -24,7 +24,11 @@ data class Customer(
         val enabled: Boolean = true,
         val contract: Contract? = null,
         val contacts: List<Contact> = emptyList()
-) : Identifyable
+) : Identifyable {
+    val enabledContacts by lazy {
+        contacts.filter { it.enabled }
+    }
+}
 
 typealias FieldSelection<T> = (Customer) -> T
 typealias CustomerFilter = (Customer) -> Boolean
@@ -39,7 +43,7 @@ fun <T> getFilteredCustomerFields(customers: List<Customer>, customerFilter: Cus
 
 fun getCustomerById(customers: List<Customer>, id: Int): Customer? = customers.firstOrNull {it.id == id}
 
-fun <T: Identifyable> upsert(list: List<out T>, change: T): List<T> {
+fun <T: Identifyable> upsert(list: List<T>, change: T): List<T> {
     val result = ArrayList<T>(list.size + 1)
     var found = false
     for(element in list) {
