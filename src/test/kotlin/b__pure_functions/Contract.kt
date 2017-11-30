@@ -14,15 +14,13 @@ import java.util.*
 
 data class Contract(
         val beginDate: Date,
-        val endDate: Date = defaultEndDate(beginDate),
+        val endDate: Date = with(beginDate) {
+            val cal = Calendar.getInstance()
+            cal.time = beginDate
+            cal.add(Calendar.YEAR, 2)
+            cal.time
+        },
         val enabled: Boolean = true)
-
-fun defaultEndDate(beginDate: Date): Date {
-    val cal = Calendar.getInstance()
-    cal.time = beginDate
-    cal.add(Calendar.YEAR, 2)
-    return cal.time
-}
 
 fun setContractForCustomer(customers: List<Customer>, customerId: Int, enable: Boolean): List<Customer> {
     val customer = getCustomerById(customers, customerId)

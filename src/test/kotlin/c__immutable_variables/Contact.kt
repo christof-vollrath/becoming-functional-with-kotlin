@@ -17,12 +17,12 @@ data class Contact(
 
 fun upsertContact(contacts: List<Contact>, contact: Contact): List<Contact> = upsert(contacts, contact)
 
-fun upsertContactInCustcomers(customers: List<Customer>, id: Int, contact: Contact): List<Customer> {
+fun upsertContactInCustomers(customers: List<Customer>, id: Int, contact: Contact): List<Customer> {
     val customer = getCustomerById(customers, id)
-    if (customer != null) {
+    return if (customer != null) {
         val changedCustomer = customer.copy(contacts = upsertContact(customer.contacts, contact))
-        return upsertCustomer(customers, changedCustomer)
-    } else return customers
+        upsertCustomer(customers, changedCustomer)
+    } else customers
 }
 
 class ContactsSpec: Spek({
@@ -43,7 +43,7 @@ class ContactsSpec: Spek({
         val contact = Contact(1, "Hans", "Peter", "hans.peter")
 
         on("upsert contacts in customers") {
-            val allCustomers1 = upsertContactInCustcomers(allCustomers, 2, contact)
+            val allCustomers1 = upsertContactInCustomers(allCustomers, 2, contact)
 
             it("customer should have contacts") {
                 getCustomerById(allCustomers1, 2)!!.contacts `should equal` listOf(contact)
