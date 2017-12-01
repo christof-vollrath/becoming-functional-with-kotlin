@@ -36,6 +36,17 @@
     <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/5c3df93a4ab645e801b27a03299b320344ca8846/kotlinx-coroutines-core-0.19.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/24fa5bc93c17e466e2cb51a89630dc4074435abd/kotlinx-coroutines-core-0.19.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
           <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.0/25eb440d6eeb9fc60299121020fe726eb2100d03/kotlin-stdlib-1.2.0.jar!/"/>
         </CLASSES>
         <JAVADOC/>
@@ -91,6 +102,17 @@
     <orderEntry type="module-library" scope="RUNTIME">
       <library>
         <CLASSES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/5c3df93a4ab645e801b27a03299b320344ca8846/kotlinx-coroutines-core-0.19.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/24fa5bc93c17e466e2cb51a89630dc4074435abd/kotlinx-coroutines-core-0.19.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library>
+        <CLASSES>
           <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.2.0/25eb440d6eeb9fc60299121020fe726eb2100d03/kotlin-stdlib-1.2.0.jar!/"/>
         </CLASSES>
         <JAVADOC/>
@@ -140,6 +162,17 @@
         <JAVADOC/>
         <SOURCES>
           <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.2.0/7fb1210ceec26e7e5195894fa83e9e67ea4d2ba/kotlin-reflect-1.2.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/5c3df93a4ab645e801b27a03299b320344ca8846/kotlinx-coroutines-core-0.19.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/0.19.3/24fa5bc93c17e466e2cb51a89630dc4074435abd/kotlinx-coroutines-core-0.19.3-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -168,22 +201,22 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.0.0/5602a195a442636276efefce2a4c7b418cd67e5c/junit-platform-launcher-1.0.0.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.0.2/7cd136827fbfe3e6301b95f0340d654ad54feaa4/junit-platform-launcher-1.0.2.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.0.0/43198fd51ec1ec8c96ad25cc8c062d42413aeef8/junit-platform-launcher-1.0.0-sources.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.0.2/5456dbed4aa4c926624b592502bb3e16dbd48328/junit-platform-launcher-1.0.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.amshove.kluent/kluent/1.29/b86f520ee0fa3bd008e32e0f7de42bed3a2368b8/kluent-1.29.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.amshove.kluent/kluent/1.30/99b9a56cc1c55256e71bf011cf8260369ade8a3f/kluent-1.30.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.amshove.kluent/kluent/1.29/8686aba3c15a6b855aef15ab6146efc4007d361e/kluent-1.29-sources.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.amshove.kluent/kluent/1.30/aadaa59bc57224644de9d9bcfb7cf7367a5f1c55/kluent-1.30-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -223,22 +256,11 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.0.0/3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d/apiguardian-api-1.0.0.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.0.2/ae5d9b8c44d78da636e4e1e00a907fe0fb7bcb8f/junit-platform-engine-1.0.2.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.0.0/777508fa9f3e03cafb3c1fb2eba3dca317f4b1ee/apiguardian-api-1.0.0-sources.jar!/"/>
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.0.0/fdc6f63a689b894529ea5e9e218b65422748fd/junit-platform-engine-1.0.0.jar!/"/>
-        </CLASSES>
-        <JAVADOC/>
-        <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.0.0/8d52c2241a39a19406c25aa21303c5f7ddc3b018/junit-platform-engine-1.0.0-sources.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.0.2/bb7170dd0ae7e4060ecb2df201f097238dea82df/junit-platform-engine-1.0.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -256,11 +278,11 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin/1.5.0/25faa884f76375f76cdbd6651c4cebcde36d4117/mockito-kotlin-1.5.0.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin-kt1.1/1.5.0/3cb5419929540bcb25bdcc5e9ff7c8a1cb5831c/mockito-kotlin-kt1.1-1.5.0.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin/1.5.0/87eb468d9b75a267dd1a3f354e5b7284bea20217/mockito-kotlin-1.5.0-sources.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin-kt1.1/1.5.0/3cb5419929540bcb25bdcc5e9ff7c8a1cb5831c/mockito-kotlin-kt1.1-1.5.0-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -278,11 +300,11 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.0.0/d2e03d9b21020746d48fe45834ff7d71fbcbd7b2/junit-platform-commons-1.0.0.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.0.2/e348a3a67940694f0718d04f9b0784b3dfb7819b/junit-platform-commons-1.0.2.jar!/"/>
         </CLASSES>
         <JAVADOC/>
         <SOURCES>
-          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.0.0/f7fd22e27780bed489d6442ec00e8fdee9b03d99/junit-platform-commons-1.0.0-sources.jar!/"/>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.0.2/303a5efe40ebbe0010b9c72f60463ff73ba30a6c/junit-platform-commons-1.0.2-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
@@ -305,6 +327,17 @@
         <JAVADOC/>
         <SOURCES>
           <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin/1.5.0/25faa884f76375f76cdbd6651c4cebcde36d4117/mockito-kotlin-1.5.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/tof/.gradle/caches/modules-2/files-2.1/com.nhaarman/mockito-kotlin/1.5.0/87eb468d9b75a267dd1a3f354e5b7284bea20217/mockito-kotlin-1.5.0-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>
