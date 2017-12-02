@@ -13,20 +13,19 @@ import org.jetbrains.spek.api.dsl.on
 import java.util.*
 
 
-tailrec fun <T: Identifyable> upsertRec(list: List<T>, change: T, found: Boolean = false, interimResult: MutableList<T> = ArrayList(list.size + 1)): List<T> {
+tailrec fun <T: Identifyable> upsertRec(list: List<T>, change: T, found: Boolean = false, interimResult: List<T> = listOf()): List<T> {
     val head = list.firstOrNull()
     return if (head == null) {
         if (found) interimResult
         else interimResult + change
     } else {
         val foundId = head.id == change.id
-        if (foundId) {
-            interimResult += change
-            upsertRec(list.drop(1), change, foundId, interimResult)
-        } else {
-            interimResult += head
-            upsertRec(list.drop(1), change, foundId, interimResult)
-        }
+        upsertRec(list.drop(1), change, foundId,
+                if (foundId) {
+                    interimResult + change
+                } else {
+                    interimResult + head
+                })
         // Not efficent at all since drop creates a new list and copies the tail into it
         // For Kotlin lists recursion seams not to be an appropriate approach
     }

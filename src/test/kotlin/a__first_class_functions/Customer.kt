@@ -9,6 +9,7 @@ import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import java.util.*
+import kotlin.coroutines.experimental.buildSequence
 
 interface Identifyable {
     val id: Int
@@ -17,9 +18,9 @@ interface Identifyable {
 data class Customer(
         override val id: Int,
         val name: String,
-        val address: String,
+        val address: String? = null,
         val state: String,
-        val primaryContact: String,
+        val primaryContact: String? = null,
         val domain: String,
         val enabled: Boolean = true,
         val contract: Contract? = null,
@@ -43,20 +44,17 @@ fun <T> getFilteredCustomerFields(customers: List<Customer>, customerFilter: Cus
 
 fun getCustomerById(customers: List<Customer>, id: Int): Customer? = customers.firstOrNull {it.id == id}
 
-fun <T: Identifyable> upsert(list: List<T>, change: T): List<T> {
-    val result = ArrayList<T>(list.size + 1)
-    var found = false
-    for(element in list) {
-        result +=
-                if (element.id == change.id) {
-                    found = true
-                    change
-                }
-                else element
-    }
-    if (! found) result += change
-    return result
-}
+fun <T: Identifyable> upsert(list: List<T>, change: T): List<T> =
+    buildSequence {
+        var found = false
+        for(element in list) {
+            yield(when(element.id) {
+                change.id -> { found = true; change }
+                else -> element
+            })
+        }
+        if (! found) yield(change)
+    }.toList()
 
 fun upsertCustomer(customers: List<Customer>, changedCustomer: Customer): List<Customer> = upsert(customers, changedCustomer)
 
